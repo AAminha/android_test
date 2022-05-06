@@ -30,28 +30,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.frameLayout, fragmentSearch).commitAllowingStateLoss();
         BottomNavigationView bottomNavigationView = findViewById(R.id.navView);
         bottomNavigationView.setOnItemSelectedListener(new ItemSelectedListener());
-
-        /*binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.navView, navController);*/
     }
-
-    /*public void NavigationBarView.OnItemSelectedListener() {
-
-    }*/
-
-    /*class ItemSelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener {
-
-    }*/
 
     class ItemSelectedListener implements NavigationBarView.OnItemSelectedListener {
 
@@ -63,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.searchItem:
                     transaction.replace(R.id.frameLayout, fragmentSearch).commitAllowingStateLoss();
                     break;
-                case R.id.homeItem:em:
+                case R.id.homeItem:
                     transaction.replace(R.id.frameLayout, fragmentHome).commitAllowingStateLoss();
                     break;
-                case R.id.calendarItem:tem:
+                case R.id.calendarItem:
                     transaction.replace(R.id.frameLayout, fragmentCalendar).commitAllowingStateLoss();
                     break;
             }
@@ -75,3 +54,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+
+/*
+참고 링크 : https://lktprogrammer.tistory.com/183
+*/

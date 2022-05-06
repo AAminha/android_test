@@ -1,37 +1,50 @@
 package com.example.projecttemplate.ui.home;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
-//import com.example.projecttemplate.databinding.FragmentDashboardBinding;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.example.projecttemplate.R;
+import com.example.projecttemplate.list_item;
+import com.example.projecttemplate.ui.MyListAdapter;
+
+import java.util.ArrayList;
 
 public class FragmentHome extends Fragment {
 
-    //private FragmentDashboardBinding binding;
+    ArrayList<list_item> itemArrayList;
+    RecyclerView recyclerView;
+    MyListAdapter adapter;
+    View rootview = null;
+    Context ct;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        /*DashboardViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        rootview = inflater.inflate(R.layout.fragment_home, container, false);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        recyclerView = (RecyclerView) rootview.findViewById(R.id.my_plant_list);
+        itemArrayList = new ArrayList<list_item>();
 
-        final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;*/
-        // inflate는 xml에 표기된 레이아웃들을 메모리에 로딩된 후 객체화 시키는 과정
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        // fragment는 activity가 아니라서 MainActivity.this 또는 this 사용 불가
+        ct = container.getContext();
+        Context test = this.getContext();
+
+        // https://lakue.tistory.com/56
+        // https://recipes4dev.tistory.com/154
+        recyclerView.setLayoutManager(new LinearLayoutManager(ct));
+
+        itemArrayList.add(new list_item(R.drawable.plant_1, "허브"));
+        itemArrayList.add(new list_item(R.drawable.plant_2, "카스테라"));
+        itemArrayList.add(new list_item(R.drawable.plant_3, "흰둥이"));
+        itemArrayList.add(new list_item(R.drawable.plant_4, "멋쟁이"));
+
+        adapter = new MyListAdapter(ct, itemArrayList);
+        recyclerView.setAdapter(adapter);
+
+        return rootview;
     }
-
-    /*@Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }*/
 }
